@@ -1,0 +1,16 @@
+.chat li:nth-child(1n){
+    background: #ceff81;
+}
+.chat li:nth-child(2n){
+    background: #ff9578;
+}
+ul{
+    padding: 0;
+}
+ul li{
+    list-style: none;
+    height: 20px;
+}
+.chat{
+    width: 300px;
+}
