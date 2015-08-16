@@ -12,15 +12,15 @@ var ChatView = BaseView.extend({
     },
 
     getSubscribe: function(parseTemplate) {
-        PubSub.subscribe("chat", function (options) {
         var template,
-            chatList = $('#chat-list'),
-            replaceData = {
+            chatList = this.$('#chat-list');
+        PubSub.subscribe("chat", function (options) {
+
+           var replaceData = {
                 user: options.user,
                 text: options.text
             },
             compiled = _.template(parseTemplate);
-
             template = compiled(replaceData);
             chatList.append(template);
         });

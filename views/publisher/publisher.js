@@ -1,10 +1,15 @@
 var PublisherView = BaseView.extend({
-    className: null,
+    id: null,
+    userName: null,
     isSubscribed: true,
     templateUrl: 'views/publisher/publisher.html',
     events: {
         "click #sendMsg": "typeNewMessage",
         "click #interrupt": "interrupt"
+    },
+
+    onInitialize: function () {
+        this.userName = this.id;
     },
 
     clearInput: function () {
@@ -14,7 +19,7 @@ var PublisherView = BaseView.extend({
     typeNewMessage: function() {
         var text = this.$el.find('.messageText').val();
         if (this.isSubscribed) {
-            PubSub.publish("chat", {text: text, user: this.className}, this.isSubscribed);
+            PubSub.publish("chat", {text: text, user: this.userName}, this.isSubscribed);
         } else {
             PubSub.unsubscribe("chat", this.isSubscribed);
         }

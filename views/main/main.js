@@ -9,20 +9,18 @@ var MainView = BaseView.extend({
     },
 
     onInitialize: function () {
-        this.views.publisherView = new PublisherView({className: 'Bob'});
         this.views.chatView = new ChatView();
    },
 
     onRender: function() {
-        var publisher = this.$('#publisherContainer'),
-            chat = this.$('#chatView');
-        publisher.html(this.views.publisherView.el);
+        var chat = this.$('#chatView');
         chat.html(this.views.chatView.el);
+        this.addPublisher("Bob");
     },
 
-    addPublisher: function () {
+    addPublisher: function (user) {
         var name = this.$el.find('.publisherName').val();
-        var newPublisher = new PublisherView({className: name});
+        var newPublisher = new PublisherView({id: name || user});
         this.$el.find('#publisherContainer').append(newPublisher.el);
     }
 });
